@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+#import "RUServiceParser.h"
 
 @interface MainViewController () <UITabBarDelegate, UITableViewDataSource>
 
@@ -21,6 +22,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
+    [[RUServiceParser sharedParser] getBusListWithSuccess:^(NSArray *list) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

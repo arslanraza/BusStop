@@ -7,12 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "RURestKitParser.h"
 
 @interface RUServiceParser : NSObject
 
 /**
  Creates a shared instance of the RUServicesParser class
  */
-
 + (id)sharedParser;
+
+/**
+ Returns a List of all the Bus Stops
+ */
+- (void)getBusListWithSuccess:(void (^)(NSArray *list))success
+                      failure:(void (^)(NSError *error))failure;
 @end

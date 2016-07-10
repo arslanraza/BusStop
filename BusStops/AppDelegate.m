@@ -7,6 +7,8 @@
 //
 
 #import "AppDelegate.h"
+#import "RURestKitParser.h"
+#import "Constants.h"
 
 @interface AppDelegate ()
 
@@ -17,6 +19,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [[RURestKitParser shareParser] configureRestKitWithBaseURL:[NSURL URLWithString:kBASE_URL]];
+    
     return YES;
 }
 
