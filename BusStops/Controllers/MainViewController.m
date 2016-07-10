@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "RUServiceParser.h"
 #import "BusInfoCell.h"
+#import <SVProgressHUD/SVProgressHUD.h>
 
 @interface MainViewController () <UITabBarDelegate, UITableViewDataSource>
 
@@ -21,10 +22,12 @@
 #pragma mark - Private Methods
 
 - (void)getBusData {
+    [SVProgressHUD show];
     __weak typeof(self) weakSelf = self;
     [[RUServiceParser sharedParser] getBusListWithSuccess:^(NSArray *list) {
         weakSelf.busStops = list;
         [weakSelf.tableView reloadData];
+        [SVProgressHUD dismiss];
     } failure:^(NSError *error) {
         // Display an alert to the user in case the request fails
         UIAlertController *alert = [UIAlertController
@@ -37,7 +40,40 @@
                           style:UIAlertActionStyleCancel
                           handler:nil]];
         [self presentViewController:alert animated:YES completion:nil];
+        [SVProgressHUD dismiss];
     }];
+}
+
+/**
+ Downloads Images for only visible cells.
+ */
+- (void)downloadImagesForVisibleCells {
+    
+    if (self.busStops.count > 0) {
+        
+        NSArray *visiblePaths = self.tableView.indexPathsForVisibleRows;
+        
+        for (NSIndexPath *indexPath in visiblePaths) {
+            
+            Location *singleLocation = self.busStops[indexPath.row];
+            
+            if (!singleLocation.busImage) {
+                
+                //                    print("Downloading Image for: \(indexPath.row)")
+//                ImageDownloader.sharedInstance.downloadImage(singleFeed.imageUrlString
+//                                                             , completion: { (image, imageURL) in
+//                                                                 if let image = image {
+//                                                                     singleFeed.feedImage = image
+//                                                                     // VisibleCell will only have a value if its currently displayed on screen
+//                                                                     // Out of bound cells will return for the following check
+//                                                                     if let visibleCell = self.tableView.cellForRowAtIndexPath(indexPath) as? FeedItemCell {
+//                                                                         visibleCell.imageViewFeed.image = image
+//                                                                     }
+//                                                                 }
+//                                                             })
+            }
+        }
+    }
 }
 
 - (void)configureNavigationBar {
@@ -51,6 +87,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self configureNavigationBar];
     [self getBusData];
     
 }

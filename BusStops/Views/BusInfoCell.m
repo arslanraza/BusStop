@@ -16,6 +16,8 @@
     // Initialization code
     
     [self.imageViewBusStop setCornerRadiusAsCircle];
+    [self.imageViewBusStop.layer setBorderWidth:1.0];
+    [self.imageViewBusStop.layer setBorderColor:[UIColor whiteColor].CGColor];
     
 }
 

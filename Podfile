@@ -6,6 +6,8 @@
 target 'BusStops' do
 
 pod 'RestKit'
+pod 'SVProgressHUD'
+pod 'SDWebImage'
 
 end
 

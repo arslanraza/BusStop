@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+@import UIKit;
 
 @interface Location : NSObject
 
@@ -17,5 +18,7 @@
 @property (nonatomic, strong) NSString *subtitle;
 
 @property (nonatomic, strong) NSArray *lines;
+
+@property (nonatomic, strong) UIImage *busImage;
 
 @end

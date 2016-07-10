@@ -19,7 +19,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ij5-el-RTW">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.86666666670000003" green="0.86666666670000003" blue="0.86666666670000003" alpha="0.43060172872340424" colorSpace="calibratedRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusCell" rowHeight="80" id="YyF-A2-jdN" customClass="BusInfoCell">
                                         <rect key="frame" x="0.0" y="28" width="600" height="80"/>
@@ -29,24 +29,24 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bus ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xYM-J1-EO7">
-                                                    <rect key="frame" x="12" y="8" width="43" height="16"/>
-                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
+                                                    <rect key="frame" x="12" y="12" width="40" height="15"/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mll-xR-w5H">
-                                                    <rect key="frame" x="12" y="28" width="513" height="17"/>
+                                                    <rect key="frame" x="12" y="31" width="513" height="17"/>
                                                     <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="15"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ySI-Bz-JJN">
-                                                    <rect key="frame" x="12" y="49" width="31" height="16"/>
+                                                    <rect key="frame" x="12" y="52" width="31" height="16"/>
                                                     <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2BT-gO-AzN">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="2BT-gO-AzN">
                                                     <rect key="frame" x="533" y="12" width="55" height="55"/>
                                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -64,9 +64,10 @@
                                                 <constraint firstItem="xYM-J1-EO7" firstAttribute="leading" secondItem="38f-OR-aSR" secondAttribute="leading" constant="12" id="VKo-TG-J6o"/>
                                                 <constraint firstItem="mll-xR-w5H" firstAttribute="leading" secondItem="38f-OR-aSR" secondAttribute="leading" constant="12" id="bPb-Cu-TYN"/>
                                                 <constraint firstItem="ySI-Bz-JJN" firstAttribute="top" secondItem="mll-xR-w5H" secondAttribute="bottom" constant="4" id="mDK-fe-bBn"/>
-                                                <constraint firstItem="xYM-J1-EO7" firstAttribute="top" secondItem="38f-OR-aSR" secondAttribute="top" constant="8" id="rvl-Ee-MQB"/>
+                                                <constraint firstItem="xYM-J1-EO7" firstAttribute="top" secondItem="38f-OR-aSR" secondAttribute="top" constant="12" id="rvl-Ee-MQB"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <outlet property="busID" destination="xYM-J1-EO7" id="ke9-zV-YCH"/>
                                             <outlet property="busTime" destination="ySI-Bz-JJN" id="kku-2P-j25"/>
@@ -117,4 +118,7 @@
             <point key="canvasLocation" x="162" y="-377"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="PlaceHolder" width="55" height="55"/>
+    </resources>
 </document>
