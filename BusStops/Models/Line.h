@@ -1,15 +1,15 @@
 //
-//  ViewController.h
+//  Line.h
 //  BusStops
 //
 //  Created by Arslan Raza on 10/07/2016.
 //  Copyright © 2016 Arslan Raza. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@interface ViewController : UIViewController
+@interface Line : NSObject
+
 
 
 @end
-
