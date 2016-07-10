@@ -7,8 +7,7 @@
 //
 
 #import "RUServiceParser.h"
-#import "Location.h"
-#import "Line.h"
+#import "RUObjectMapping.h"
 
 @implementation RUServiceParser
 
@@ -35,34 +34,19 @@
 - (void)getBusListWithSuccess:(void (^)(NSArray *list))success
                       failure:(void (^)(NSError *error))failure {
     
-    NSString *path = @"services/bus";    
-//    @property (nonatomic, strong) NSNumber *lat;
-//    @property (nonatomic, strong) NSNumber *lon;
-//    @property (nonatomic, strong) NSString *subtitle;
-//    
-//    @property (nonatomic, strong) NSArray *lines;
-
-    // 1
-    RKObjectMapping *locationMapping = [[RURestKitParser shareParser]
-                                        addMappingForClass:[Location class]
-                                        withAttributeMappingFromDictionary:@{@"locationID":@"id"
-                                                                             , @"title":@"title"
-                                                                             , @"lat":@"lat"
-                                                                             , @"lon":@"lon"
-                                                                             , @"subtitle":@"subtitle"
-                                                                             , @"lines":@"lines"
-                                                                             }
-                                        ];
+    NSString *path = @"services/bus";
     
+    // Creating Mapping for Location Object
+    RKObjectMapping *locationMapping = [RUObjectMapping getLocationMapping];
     
-    // 2
+    // Adding the mapping in the respose descritor to be mapped later with the given key path
     [[RURestKitParser shareParser] addResponseDescriptorWithMapping:locationMapping
                                                              method:RKRequestMethodGET
                                                         pathPattern:nil
                                                             keyPath:@"locations"
                                                         statusCodes:[NSIndexSet indexSetWithIndex:200]];
     
-    // 3
+    // Performs GET request
     [[RURestKitParser shareParser]
      getObjectsAtPath:path
      parameters:nil
@@ -72,16 +56,20 @@
 //        NSLog(@"Success : %@", operation.HTTPRequestOperation.responseString);
          
          NSArray *locations = [mappingResult.dictionary valueForKey:@"locations"];
-         Location *location = locations.firstObject;
-         if (location) {
-             NSLog(@"%@", location);
-         }
+         
+//         NSSet *titles = [NSSet setWithArray:[locations valueForKeyPath:@"@distinctUnionOfObjects.title"]];
+//         NSLog(@"Titles: %@", titles);
+         
+//         Location *location = locations.firstObject;
+//         if (location) {
+//             NSLog(@"%@", location);
+//         }
         
          if (success) {
-             success(nil);
+             success(locations);
          }
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        NSLog(@"Failure : %@ -- Error: %@", operation.HTTPRequestOperation.responseString, error.localizedDescription);
+        NSLog(@"Error: %@", error.localizedDescription);
         if (failure) {
             failure(error);
         }

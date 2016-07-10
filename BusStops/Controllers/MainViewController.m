@@ -11,6 +11,8 @@
 
 @interface MainViewController () <UITabBarDelegate, UITableViewDataSource>
 
+@property (nonatomic, strong) NSArray *busStops;
+
 @end
 
 @implementation MainViewController
@@ -22,7 +24,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
     
     [[RUServiceParser sharedParser] getBusListWithSuccess:^(NSArray *list) {
         

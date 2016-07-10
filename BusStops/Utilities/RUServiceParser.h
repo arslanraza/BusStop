@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import "RURestKitParser.h"
+#import "Location.h"
+#import "Line.h"
 
 @interface RUServiceParser : NSObject
 
