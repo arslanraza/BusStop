@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "RUServiceParser.h"
+#import "BusInfoCell.h"
 
 @interface MainViewController () <UITabBarDelegate, UITableViewDataSource>
 
@@ -19,17 +20,39 @@
 
 #pragma mark - Private Methods
 
+- (void)getBusData {
+    __weak typeof(self) weakSelf = self;
+    [[RUServiceParser sharedParser] getBusListWithSuccess:^(NSArray *list) {
+        weakSelf.busStops = list;
+        [weakSelf.tableView reloadData];
+    } failure:^(NSError *error) {
+        // Display an alert to the user in case the request fails
+        UIAlertController *alert = [UIAlertController
+                                    alertControllerWithTitle:@"Error"
+                                    message:@"Something went wrong. Please try again."
+                                    preferredStyle:UIAlertControllerStyleAlert];
+        
+        [alert addAction:[UIAlertAction
+                          actionWithTitle:@"Ok"
+                          style:UIAlertActionStyleCancel
+                          handler:nil]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }];
+}
+
+- (void)configureNavigationBar {
+    
+    UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(getBusData)];
+    self.navigationItem.rightBarButtonItem = refreshButton;
+}
+
 #pragma mark - Life Cycle Methods
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self getBusData];
     
-    [[RUServiceParser sharedParser] getBusListWithSuccess:^(NSArray *list) {
-        
-    } failure:^(NSError *error) {
-        
-    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -50,12 +73,17 @@
 #pragma mark - UITableViewDataSource Methods
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
+    return self.busStops.count;
 }
 
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BusCell"];
+    BusInfoCell *cell = (BusInfoCell*)[tableView dequeueReusableCellWithIdentifier:@"BusCell"];
+    
+    Location *singleLocation = self.busStops[indexPath.row];
+    cell.busID.text = singleLocation.locationID;
+    cell.busTitle.text = singleLocation.title;
+    
     
     return cell;
 }

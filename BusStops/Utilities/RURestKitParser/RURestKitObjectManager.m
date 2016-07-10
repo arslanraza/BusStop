@@ -8,7 +8,7 @@
 
 #import "RURestKitObjectManager.h"
 
-#define kREQUEST_TIME_OUT_INTERVAL          10
+#define kREQUEST_TIME_OUT_INTERVAL          20
 
 @implementation RURestKitObjectManager
 

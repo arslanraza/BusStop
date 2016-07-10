@@ -22,6 +22,10 @@
 		A86A3BC31D327BAA0084F350 /* Line.m in Sources */ = {isa = PBXBuildFile; fileRef = A86A3BC21D327BAA0084F350 /* Line.m */; };
 		A86A3BC61D3284570084F350 /* RUObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = A86A3BC51D3284570084F350 /* RUObjectMapping.m */; };
 		A86A3BC71D3284570084F350 /* RUObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = A86A3BC51D3284570084F350 /* RUObjectMapping.m */; };
+		A86A3BCA1D328F320084F350 /* BusInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A86A3BC91D328F320084F350 /* BusInfoCell.m */; };
+		A86A3BCB1D328F320084F350 /* BusInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A86A3BC91D328F320084F350 /* BusInfoCell.m */; };
+		A86A3BCF1D3291B90084F350 /* UIView+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = A86A3BCE1D3291B90084F350 /* UIView+Animations.m */; };
+		A86A3BD01D3291B90084F350 /* UIView+Animations.m in Sources */ = {isa = PBXBuildFile; fileRef = A86A3BCE1D3291B90084F350 /* UIView+Animations.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +66,10 @@
 		A86A3BC21D327BAA0084F350 /* Line.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Line.m; sourceTree = "<group>"; };
 		A86A3BC41D3284570084F350 /* RUObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RUObjectMapping.h; sourceTree = "<group>"; };
 		A86A3BC51D3284570084F350 /* RUObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RUObjectMapping.m; sourceTree = "<group>"; };
+		A86A3BC81D328F320084F350 /* BusInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusInfoCell.h; sourceTree = "<group>"; };
+		A86A3BC91D328F320084F350 /* BusInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusInfoCell.m; sourceTree = "<group>"; };
+		A86A3BCD1D3291B90084F350 /* UIView+Animations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Animations.h"; sourceTree = "<group>"; };
+		A86A3BCE1D3291B90084F350 /* UIView+Animations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Animations.m"; sourceTree = "<group>"; };
 		D8C8CA9436A56B6B590CA7E7 /* libPods-BusStops.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BusStops.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6615CEC4F33B2D7C6CC7BF7 /* Pods-BusStops.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BusStops.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BusStops/Pods-BusStops.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -181,6 +189,7 @@
 		A86A3BAE1D3277330084F350 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				A86A3BCC1D3291B90084F350 /* Categories */,
 				A86A3BB71D3279060084F350 /* RURestKitParser */,
 				A86A3BB41D3278980084F350 /* RUServiceParser.h */,
 				A86A3BB51D3278980084F350 /* RUServiceParser.m */,
@@ -193,6 +202,8 @@
 		A86A3BAF1D3277330084F350 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A86A3BC81D328F320084F350 /* BusInfoCell.h */,
+				A86A3BC91D328F320084F350 /* BusInfoCell.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -206,6 +217,15 @@
 				A86A3BBB1D3279060084F350 /* RURestKitParser.m */,
 			);
 			path = RURestKitParser;
+			sourceTree = "<group>";
+		};
+		A86A3BCC1D3291B90084F350 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				A86A3BCD1D3291B90084F350 /* UIView+Animations.h */,
+				A86A3BCE1D3291B90084F350 /* UIView+Animations.m */,
+			);
+			path = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -369,7 +389,9 @@
 				A86A3BC61D3284570084F350 /* RUObjectMapping.m in Sources */,
 				A86A3BB21D3277560084F350 /* MainViewController.m in Sources */,
 				A86A3BBD1D3279060084F350 /* RURestKitParser.m in Sources */,
+				A86A3BCF1D3291B90084F350 /* UIView+Animations.m in Sources */,
 				A86A3B891D3272AC0084F350 /* main.m in Sources */,
+				A86A3BCA1D328F320084F350 /* BusInfoCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -377,6 +399,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A86A3BCB1D328F320084F350 /* BusInfoCell.m in Sources */,
+				A86A3BD01D3291B90084F350 /* UIView+Animations.m in Sources */,
 				A86A3BC71D3284570084F350 /* RUObjectMapping.m in Sources */,
 				A86A3BA21D3272AD0084F350 /* BusStopsTests.m in Sources */,
 			);

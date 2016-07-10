@@ -28,7 +28,7 @@
 + (RKObjectMapping*)getLocationMapping {
     return [self
             getMappingForClass:[Location class]
-            withAttributeMappingFromDictionary:@{@"locationID":@"id"
+            withAttributeMappingFromDictionary:@{@"id":@"locationID"
                                                  , @"title":@"title"
                                                  , @"lat":@"lat"
                                                  , @"lon":@"lon"
