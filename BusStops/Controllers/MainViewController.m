@@ -28,7 +28,7 @@
     [[RUServiceParser sharedParser] getBusListWithSuccess:^(NSArray *list) {
         weakSelf.busStops = list;
         [weakSelf.tableView reloadData];
-        [weakSelf downloadImagesForVisibleCells];
+        [weakSelf downloadDataForVisibleCells];
         [SVProgressHUD dismiss];
     } failure:^(NSError *error) {
         // Display an alert to the user in case the request fails
@@ -88,6 +88,34 @@
     }
 }
 
+- (void)getEstimatesForVisibleCells {
+    
+    if (self.busStops.count > 0) {
+        
+        NSArray *visiblePaths = self.tableView.indexPathsForVisibleRows;
+        
+        for (NSIndexPath *indexPath in visiblePaths) {
+            
+            Location *singleLocation = self.busStops[indexPath.row];
+            
+            __weak typeof(self) weakSelf = self;
+            [singleLocation getEstimatedTimeForNextBus:^(NSString *busNoAndTime) {
+                BusInfoCell *visibleCell = [weakSelf.tableView cellForRowAtIndexPath:indexPath];
+                if (visibleCell) {
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        visibleCell.busTime.text = busNoAndTime;
+                    });                    
+                }
+            }];
+        }
+    }
+}
+
+- (void)downloadDataForVisibleCells {
+    [self downloadImagesForVisibleCells];
+    [self getEstimatesForVisibleCells];
+}
+
 - (void)configureNavigationBar {
     
     UIBarButtonItem *refreshButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(getBusData)];
@@ -139,6 +167,7 @@
         cell.imageViewBusStop.image = [UIImage imageNamed:@"PlaceHolder"];
     }
     
+    cell.busTime.text = @"- -";
     return cell;
 }
 
@@ -149,7 +178,7 @@
 #pragma mark - UIScrollViewDelegate Methods
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    [self downloadImagesForVisibleCells];
+    [self downloadDataForVisibleCells];
 }
 
 #pragma mark - UITableViewDelegate Methods

@@ -13,6 +13,6 @@
 @interface RUObjectMapping : NSObject
 
 + (RKObjectMapping*)getLocationMapping;
-+ (RKObjectMapping*)getLineMapping;
++ (RKObjectMapping*)getEstimateMapping;
 
 @end

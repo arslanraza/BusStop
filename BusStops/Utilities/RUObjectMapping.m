@@ -37,10 +37,12 @@
                                                  }
             ];
 }
-+ (RKObjectMapping*)getLineMapping {
++ (RKObjectMapping*)getEstimateMapping {
     return [self
-            getMappingForClass:[Line class]
-            withAttributeMappingFromDictionary:@{@"":@""
+            getMappingForClass:[Estimate class]
+            withAttributeMappingFromDictionary:@{@"line":@"line"
+                                                 , @"direction":@"direction"
+                                                 , @"estimate":@"estimate"
                                                  }
             ];
 }

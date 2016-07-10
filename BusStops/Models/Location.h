@@ -21,6 +21,14 @@
 
 @property (nonatomic, strong) UIImage *image;
 
+@property (nonatomic, strong) NSString *currentEstimate;
+
+
+/**
+ Returns the NSURL object to get Location of the Bus Stop on Google Map
+ */
 - (NSURL*)getMapImageURL;
+
+- (void)getEstimatedTimeForNextBus:(void(^)(NSString *busNoAndTime))completion;
 
 @end

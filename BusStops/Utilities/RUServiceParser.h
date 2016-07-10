@@ -10,6 +10,7 @@
 #import "RURestKitParser.h"
 #import "Location.h"
 #import "Line.h"
+#import "Estimate.h"
 
 @interface RUServiceParser : NSObject
 
@@ -23,4 +24,8 @@
  */
 - (void)getBusListWithSuccess:(void (^)(NSArray *list))success
                       failure:(void (^)(NSError *error))failure;
+
+- (void)getEstimatesForBusStopWithID:(NSString*)busID
+                             success:(void (^)(NSArray *list))success
+                             failure:(void (^)(NSError *error))failure;
 @end

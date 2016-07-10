@@ -77,4 +77,53 @@
     }];
 }
 
+- (void)getEstimatesForBusStopWithID:(NSString*)busID
+                             success:(void (^)(NSArray *list))success
+                      failure:(void (^)(NSError *error))failure {
+    
+    if (!busID) {
+        if (failure) {
+            failure(nil);
+        }
+        return;
+    }
+    
+    NSString *path = [NSString stringWithFormat:@"services/bus/%@", busID];
+    
+    // Creating Mapping for Estimate Object
+    RKObjectMapping *mapping = [RUObjectMapping getEstimateMapping];
+    
+    // Adding the mapping in the respose descritor to be mapped later with the given key path
+    [[RURestKitParser shareParser] addResponseDescriptorWithMapping:mapping
+                                                             method:RKRequestMethodGET
+                                                        pathPattern:nil
+                                                            keyPath:@"estimates"
+                                                        statusCodes:[NSIndexSet indexSetWithIndex:200]];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"estimate"
+                                                                   ascending:YES];
+    
+    // Performs GET request
+    [[RURestKitParser shareParser]
+     getObjectsAtPath:path
+     parameters:nil
+     requestMethod:RKRequestMethodGET
+     success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+         
+         NSArray *estimates = [mappingResult.dictionary valueForKey:@"estimates"];
+         
+         NSArray *sortedArray = [estimates sortedArrayUsingDescriptors:@[sortDescriptor]];
+         
+         if (success) {
+             success(sortedArray);
+         }
+     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+         NSLog(@"Error: %@", error.localizedDescription);
+         if (failure) {
+             failure(error);
+         }
+         
+     }];
+}
+
 @end

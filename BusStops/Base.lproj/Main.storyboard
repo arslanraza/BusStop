@@ -29,21 +29,21 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bus ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xYM-J1-EO7">
-                                                    <rect key="frame" x="12" y="12" width="40" height="15"/>
-                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="13"/>
+                                                    <rect key="frame" x="12" y="12" width="42" height="15"/>
+                                                    <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="13"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mll-xR-w5H">
-                                                    <rect key="frame" x="12" y="31" width="513" height="17"/>
-                                                    <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="15"/>
+                                                    <rect key="frame" x="12" y="31" width="513" height="16"/>
+                                                    <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="14"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ySI-Bz-JJN">
-                                                    <rect key="frame" x="12" y="52" width="31" height="16"/>
-                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="- -" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ySI-Bz-JJN">
+                                                    <rect key="frame" x="12" y="57" width="12" height="14"/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="12"/>
+                                                    <color key="textColor" red="0.96078431369999995" green="0.16078431369999999" blue="0.26274509800000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PlaceHolder" translatesAutoresizingMaskIntoConstraints="NO" id="2BT-gO-AzN">
@@ -59,6 +59,7 @@
                                                 <constraint firstItem="2BT-gO-AzN" firstAttribute="leading" secondItem="mll-xR-w5H" secondAttribute="trailing" constant="8" id="3ol-k6-LGN"/>
                                                 <constraint firstItem="ySI-Bz-JJN" firstAttribute="leading" secondItem="38f-OR-aSR" secondAttribute="leading" constant="12" id="9Zt-Tr-L7w"/>
                                                 <constraint firstAttribute="trailing" secondItem="2BT-gO-AzN" secondAttribute="trailing" constant="12" id="A7F-Ac-mh6"/>
+                                                <constraint firstAttribute="bottom" secondItem="ySI-Bz-JJN" secondAttribute="bottom" constant="8" id="AoF-Ka-EU5"/>
                                                 <constraint firstItem="2BT-gO-AzN" firstAttribute="centerY" secondItem="38f-OR-aSR" secondAttribute="centerY" id="Msb-da-FqT"/>
                                                 <constraint firstItem="mll-xR-w5H" firstAttribute="top" secondItem="xYM-J1-EO7" secondAttribute="bottom" constant="4" id="Py3-W1-v8z"/>
                                                 <constraint firstItem="xYM-J1-EO7" firstAttribute="leading" secondItem="38f-OR-aSR" secondAttribute="leading" constant="12" id="VKo-TG-J6o"/>
@@ -66,6 +67,11 @@
                                                 <constraint firstItem="ySI-Bz-JJN" firstAttribute="top" secondItem="mll-xR-w5H" secondAttribute="bottom" constant="4" id="mDK-fe-bBn"/>
                                                 <constraint firstItem="xYM-J1-EO7" firstAttribute="top" secondItem="38f-OR-aSR" secondAttribute="top" constant="12" id="rvl-Ee-MQB"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="mDK-fe-bBn"/>
+                                                </mask>
+                                            </variation>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
