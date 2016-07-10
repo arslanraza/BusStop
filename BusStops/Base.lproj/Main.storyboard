@@ -17,17 +17,62 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="81" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ij5-el-RTW">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ij5-el-RTW">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusCell" rowHeight="81" id="YyF-A2-jdN">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="81"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BusCell" rowHeight="80" id="YyF-A2-jdN" customClass="BusInfoCell">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YyF-A2-jdN" id="38f-OR-aSR">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="79"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bus ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xYM-J1-EO7">
+                                                    <rect key="frame" x="12" y="8" width="43" height="16"/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mll-xR-w5H">
+                                                    <rect key="frame" x="12" y="28" width="513" height="17"/>
+                                                    <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="15"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ySI-Bz-JJN">
+                                                    <rect key="frame" x="12" y="49" width="31" height="16"/>
+                                                    <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="14"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2BT-gO-AzN">
+                                                    <rect key="frame" x="533" y="12" width="55" height="55"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="55" id="Lg7-20-u3C"/>
+                                                        <constraint firstAttribute="height" constant="55" id="mgW-3r-W4C"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="2BT-gO-AzN" firstAttribute="leading" secondItem="mll-xR-w5H" secondAttribute="trailing" constant="8" id="3ol-k6-LGN"/>
+                                                <constraint firstItem="ySI-Bz-JJN" firstAttribute="leading" secondItem="38f-OR-aSR" secondAttribute="leading" constant="12" id="9Zt-Tr-L7w"/>
+                                                <constraint firstAttribute="trailing" secondItem="2BT-gO-AzN" secondAttribute="trailing" constant="12" id="A7F-Ac-mh6"/>
+                                                <constraint firstItem="2BT-gO-AzN" firstAttribute="centerY" secondItem="38f-OR-aSR" secondAttribute="centerY" id="Msb-da-FqT"/>
+                                                <constraint firstItem="mll-xR-w5H" firstAttribute="top" secondItem="xYM-J1-EO7" secondAttribute="bottom" constant="4" id="Py3-W1-v8z"/>
+                                                <constraint firstItem="xYM-J1-EO7" firstAttribute="leading" secondItem="38f-OR-aSR" secondAttribute="leading" constant="12" id="VKo-TG-J6o"/>
+                                                <constraint firstItem="mll-xR-w5H" firstAttribute="leading" secondItem="38f-OR-aSR" secondAttribute="leading" constant="12" id="bPb-Cu-TYN"/>
+                                                <constraint firstItem="ySI-Bz-JJN" firstAttribute="top" secondItem="mll-xR-w5H" secondAttribute="bottom" constant="4" id="mDK-fe-bBn"/>
+                                                <constraint firstItem="xYM-J1-EO7" firstAttribute="top" secondItem="38f-OR-aSR" secondAttribute="top" constant="8" id="rvl-Ee-MQB"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="busID" destination="xYM-J1-EO7" id="ke9-zV-YCH"/>
+                                            <outlet property="busTime" destination="ySI-Bz-JJN" id="kku-2P-j25"/>
+                                            <outlet property="busTitle" destination="mll-xR-w5H" id="yjv-aK-Jzn"/>
+                                            <outlet property="imageViewBusStop" destination="2BT-gO-AzN" id="N1o-xS-Ope"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
