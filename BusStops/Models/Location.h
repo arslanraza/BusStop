@@ -19,6 +19,8 @@
 
 @property (nonatomic, strong) NSArray *lines;
 
-@property (nonatomic, strong) UIImage *busImage;
+@property (nonatomic, strong) UIImage *image;
+
+- (NSURL*)getMapImageURL;
 
 @end

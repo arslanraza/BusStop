@@ -10,8 +10,9 @@
 #import "RUServiceParser.h"
 #import "BusInfoCell.h"
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <SDWebImage/SDWebImageDownloader.h>
 
-@interface MainViewController () <UITabBarDelegate, UITableViewDataSource>
+@interface MainViewController () <UITabBarDelegate, UITableViewDataSource, UIScrollViewDelegate>
 
 @property (nonatomic, strong) NSArray *busStops;
 
@@ -27,6 +28,7 @@
     [[RUServiceParser sharedParser] getBusListWithSuccess:^(NSArray *list) {
         weakSelf.busStops = list;
         [weakSelf.tableView reloadData];
+        [weakSelf downloadImagesForVisibleCells];
         [SVProgressHUD dismiss];
     } failure:^(NSError *error) {
         // Display an alert to the user in case the request fails
@@ -57,20 +59,30 @@
             
             Location *singleLocation = self.busStops[indexPath.row];
             
-            if (!singleLocation.busImage) {
+            if (!singleLocation.image) {
                 
-                //                    print("Downloading Image for: \(indexPath.row)")
-//                ImageDownloader.sharedInstance.downloadImage(singleFeed.imageUrlString
-//                                                             , completion: { (image, imageURL) in
-//                                                                 if let image = image {
-//                                                                     singleFeed.feedImage = image
-//                                                                     // VisibleCell will only have a value if its currently displayed on screen
-//                                                                     // Out of bound cells will return for the following check
-//                                                                     if let visibleCell = self.tableView.cellForRowAtIndexPath(indexPath) as? FeedItemCell {
-//                                                                         visibleCell.imageViewFeed.image = image
-//                                                                     }
-//                                                                 }
-//                                                             })
+                __weak typeof(self) weakSelf = self;
+                SDWebImageDownloader *downloader = [SDWebImageDownloader sharedDownloader];
+                [downloader
+                 downloadImageWithURL:singleLocation.getMapImageURL
+                 options:0
+                 progress:nil
+                 completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+                     if (image && finished) {
+                         
+                         singleLocation.image = image;
+                         
+                         // VisibleCell will only have a value if its currently displayed on screen
+                         // Out of bound cells will return for the following check
+                         BusInfoCell *visibleCell = [weakSelf.tableView cellForRowAtIndexPath:indexPath];
+                         if (visibleCell) {
+                             dispatch_async(dispatch_get_main_queue(), ^{
+                                visibleCell.imageViewBusStop.image = image;
+                             });
+                             
+                         }
+                     }
+                 }];
             }
         }
     }
@@ -98,14 +110,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 
 #pragma mark - UITableViewDataSource Methods
 
@@ -121,12 +133,23 @@
     cell.busID.text = singleLocation.locationID;
     cell.busTitle.text = singleLocation.title;
     
+    if (singleLocation.image) {
+        cell.imageViewBusStop.image = singleLocation.image;
+    } else {
+        cell.imageViewBusStop.image = [UIImage imageNamed:@"PlaceHolder"];
+    }
     
     return cell;
 }
 
 - (UIView*)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     return [[UIView alloc] init];
+}
+
+#pragma mark - UIScrollViewDelegate Methods
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self downloadImagesForVisibleCells];
 }
 
 #pragma mark - UITableViewDelegate Methods

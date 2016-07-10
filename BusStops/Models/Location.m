@@ -16,4 +16,8 @@
 
 #pragma mark - Public Methods
 
+- (NSURL*)getMapImageURL {
+    return [NSURL URLWithString:[NSString stringWithFormat:@"http://maps.googleapis.com/maps/api/staticmap?center=%f,%f&zoom=15&size=200x120&sensor=true"
+            , self.lat.doubleValue, self.lon.doubleValue]];
+}
 @end
